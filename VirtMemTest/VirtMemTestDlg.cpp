@@ -129,8 +129,8 @@ BOOL CVirtMemTestDlg::OnInitDialog()
 	AddStringAndItemDataToCombo(m_cmbPageProtectionCtl, PAGE_EXECUTE_READWRITE, L"PAGE_EXECUTE_READWRITE");
 	AddStringAndItemDataToCombo(m_cmbPageProtectionCtl, PAGE_EXECUTE_WRITECOPY, L"PAGE_EXECUTE_WRITECOPY");
 	AddStringAndItemDataToCombo(m_cmbPageProtectionCtl, PAGE_NOACCESS,          L"PAGE_NOACCESS");
-	ix = 
 	AddStringAndItemDataToCombo(m_cmbPageProtectionCtl, PAGE_READONLY,          L"PAGE_READONLY");
+	ix = 
 	AddStringAndItemDataToCombo(m_cmbPageProtectionCtl, PAGE_READWRITE,         L"PAGE_READWRITE");
 	AddStringAndItemDataToCombo(m_cmbPageProtectionCtl, PAGE_WRITECOPY,         L"PAGE_WRITECOPY");
 	if ( CB_ERR != ix )
@@ -454,14 +454,20 @@ void CVirtMemTestDlg::OnBnClickedStack()
 {
 	UpdateData();
 	SIZE_T nAllocSize = SIZE_T(m_dwMbToAllocate) * 1024;
+	const wchar_t* szContext = L"";
 	__try
 	{
+		szContext = L"_alloca";
 		LPVOID pv = _alloca(nAllocSize);
 		if ( pv )
 		{
 			AddAddrToList(pv);
-			if (SetMemoryProtection(pv, nAllocSize))
+			//szContext = L"set memory protection";
+			//if (SetMemoryProtection(pv, nAllocSize))
+			//{
+				szContext = L"post-alloc operations";
 				PostAllocOperations(pv, nAllocSize);
+			//}
 
 			if ( m_bFree )
 			{
@@ -475,7 +481,11 @@ void CVirtMemTestDlg::OnBnClickedStack()
 	}
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
-		MessageBoxW(L"_alloca failed");
+		DWORD dwExcCode = GetExceptionCode();
+		// Declare static so we don't need to allocate more memory to create this error message
+		static wchar_t szErrCode[64] = { 0 };
+		wsprintfW(szErrCode, L"_alloca failed: exception code 0x%x\nContext: %s", dwExcCode, szContext);
+		MessageBoxW(szErrCode);
 	}
 }
 
@@ -483,18 +493,26 @@ void CVirtMemTestDlg::OnBnClickednewbyte()
 {
 	UpdateData();
 	SIZE_T nAllocSize = SIZE_T(m_dwMbToAllocate) * 1024 * 1024;
+	const wchar_t* szContext = L"";
 	__try
 	{
+		szContext = L"new[]";
 		LPBYTE pv = new BYTE[nAllocSize];
 		if ( pv )
 		{
+			szContext = L"(UI operation)";
 			AddAddrToList(pv);
+			szContext = L"set memory protection";
 			if (SetMemoryProtection(pv, nAllocSize))
+			{
+				szContext = L"post-alloc operations";
 				PostAllocOperations(pv, nAllocSize);
+			}
 
 			if ( m_bFree )
 			{
 				MessageBoxW(L"Click OK to free the mem");
+				szContext = L"delete[]";
 				delete[] pv;
 			}
 		}
@@ -505,7 +523,20 @@ void CVirtMemTestDlg::OnBnClickednewbyte()
 	}
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
-		MessageBoxW(L"new[] failed");
+		DWORD dwExcCode = GetExceptionCode();
+		// 0xE06D7363 == Visual C++ exception
+		// https://devblogs.microsoft.com/oldnewthing/20100730-00/?p=13273
+		// https://web.archive.org/web/20070501045100/http://support.microsoft.com/kb/185294
+		if (0xE06D7363 == dwExcCode)
+		{
+			MessageBoxW(L"new[] failed: Visual C++ exception");
+		}
+		else
+		{		// Declare static so we don't need to allocate more memory to create this error message
+			static wchar_t szErrCode[64] = { 0 };
+			wsprintfW(szErrCode, L"new[] failed: exception code 0x%x\nContext: %s", dwExcCode, szContext);
+			MessageBoxW(szErrCode);
+		}
 	}
 }
 

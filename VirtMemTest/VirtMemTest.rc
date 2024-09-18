@@ -86,13 +86,13 @@ BEGIN
     EDITTEXT        IDC_MbToAllocate,21,20,40,14,ES_AUTOHSCROLL | ES_NUMBER
     LTEXT           "MB",IDC_STATIC,65,23,10,8
     CONTROL         "Commit (for VirtualAlloc)",IDC_Commit,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,46,136,10
-    LTEXT           "Page protection:",IDC_STATIC,21,63,54,8
+    LTEXT           "Page protection (except for _alloca):",IDC_STATIC,21,63,134,8
     COMBOBOX        IDC_PageProtection,21,73,135,88,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Post-Alloc Operations",IDC_STATIC,164,20,120,67
     CONTROL         "Read",IDC_Read,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,172,34,33,10
     CONTROL         "Write",IDC_Write,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,172,47,33,10
-    CONTROL         "Execute existing", IDC_Execute, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 172, 60, 69, 10
-    CONTROL         "Execute NOPs", IDC_ExecuteNops, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 172, 73, 69, 10
+    CONTROL         "Execute existing",IDC_Execute,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,172,60,69,10
+    CONTROL         "Execute NOPs",IDC_ExecuteNops,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,172,73,69,10
     CONTROL         "&Free afterward",IDC_Free,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,172,92,65,10
     PUSHBUTTON      "&VirtualAlloc",IDC_VirtualAlloc,294,20,70,14
     PUSHBUTTON      "CreateFileMapping",IDC_CreateFileMapping,294,37,70,14

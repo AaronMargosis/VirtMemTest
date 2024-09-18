@@ -24,6 +24,9 @@ allocates KB instead of MB.
 With `VirtualAlloc`, memory is reserved but not committed unless you select the “Commit” option. Select the desired page protection for the 
 new allocation with the Page Protection dropdown.
 
+If you check “Free afterward”, VirtMemTest will display a message box after allocating the memory, and free the memory when you click OK. 
+Otherwise it will simply leak the memory.
+
 ### Post-Alloc Operations
 
 The "Read," "Write," "Execute existing," and "Execute NOPs" checkboxes perform the corresponding operations on the allocated memory after it has been allocated. 
@@ -32,9 +35,6 @@ Data Execution Protection (DEP) by executing memory that has or has not been mar
 "Read" tries to read whatever is in that memory; "Write" tries to write arbitrary data to the allocated memory; "Execute existing" tries to execute
 whatever is present in that memory after allocation (quite probably random garbage, so likely to crash with or without DEP); "Execute NOPs" will fill the allocation with "no operation" 
 CPU instructions followed by a "return" operation (temporarily changing page protection to allow these bytes to be written there).
-
-If you check “Free afterward”, VirtMemTest will display a message box after allocating the memory, and free the memory when you click OK. 
-Otherwise it will simply leak the memory.
 
 Allocated Addresses lists the starting addresses for the allocated memory blocks.
 
