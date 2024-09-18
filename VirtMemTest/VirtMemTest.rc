@@ -84,7 +84,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "&Memory operations",IDC_STATIC,7,7,475,99
     EDITTEXT        IDC_MbToAllocate,21,20,40,14,ES_AUTOHSCROLL | ES_NUMBER
-    LTEXT           "MB",IDC_STATIC,65,23,10,8
+    LTEXT           "MB (KB for _alloca)",IDC_STATIC,65,23,61,8,SS_REALSIZECONTROL
     CONTROL         "Commit (for VirtualAlloc)",IDC_Commit,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,46,136,10
     LTEXT           "Page protection (except for _alloca):",IDC_STATIC,21,63,134,8
     COMBOBOX        IDC_PageProtection,21,73,135,88,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
