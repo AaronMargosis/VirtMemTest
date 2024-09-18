@@ -5,7 +5,7 @@ memory operations and to observe how different Sysinternals utilities reacted to
 and crash-on-exit, particularly for exercising ProcDump. I later used it in some of my Sysinternals Primer presentations, and eventually posted
 the first public version (with source code) back in 2013. In spite of its still-primitive UI and feature set, it's still kind of useful, so I'm publishing this updated version.
 
-[VirtMemTest screenshot](Screenshot/VirtMemTest.png)
+![VirtMemTest screenshot](Screenshot/VirtMemTest.png)
 
 Memory Operations:
 
