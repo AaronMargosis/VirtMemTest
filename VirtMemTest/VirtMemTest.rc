@@ -1,0 +1,219 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\VirtMemTest.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\VirtMemTest.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_VIRTMEMTEST_DIALOG DIALOGEX 0, 0, 623, 211
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "VirtMemTest - Virtual Memory, CPU Hog, Etc. Test App"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "&Memory operations",IDC_STATIC,7,7,475,99
+    EDITTEXT        IDC_MbToAllocate,21,20,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "MB",IDC_STATIC,65,23,10,8
+    CONTROL         "Commit (for VirtualAlloc)",IDC_Commit,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,46,136,10
+    LTEXT           "Page protection:",IDC_STATIC,21,63,54,8
+    COMBOBOX        IDC_PageProtection,21,73,135,88,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Post-Alloc Operations",IDC_STATIC,164,20,120,67
+    CONTROL         "Read",IDC_Read,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,172,34,33,10
+    CONTROL         "Write",IDC_Write,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,172,47,33,10
+    CONTROL         "Execute existing", IDC_Execute, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 172, 60, 69, 10
+    CONTROL         "Execute NOPs", IDC_ExecuteNops, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 172, 73, 69, 10
+    CONTROL         "&Free afterward",IDC_Free,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,172,92,65,10
+    PUSHBUTTON      "&VirtualAlloc",IDC_VirtualAlloc,294,20,70,14
+    PUSHBUTTON      "CreateFileMapping",IDC_CreateFileMapping,294,37,70,14
+    PUSHBUTTON      "_alloca (KB)",IDC_Stack,294,54,70,14
+    PUSHBUTTON      "new byte[]",IDC_newbyte,294,71,70,14
+    LTEXT           "Allocated addresses:",IDC_STATIC,370,19,68,8
+    LISTBOX         IDC_AddrList,370,31,107,63,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "CPU Consumption",IDC_STATIC,7,112,233,92
+    LTEXT           "# &Threads:",IDC_STATIC,17,129,37,8
+    EDITTEXT        IDC_CpuHogsCount,66,126,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Thread priority:",IDC_STATIC,19,147,88,8
+    COMBOBOX        IDC_ThreadPriority,17,159,111,88,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Single CPU Affinity",IDC_SingleCPU,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,176,97,16
+    CONTROL         "Thread-to-CPU affinity",IDC_ThreadToCPUAffinity,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,191,109,10
+    CONTROL         "Run &CPU Hog(s)",IDC_CpuHog,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | WS_TABSTOP,141,126,89,47
+    GROUPBOX        "Hung &UI",IDC_STATIC,249,112,80,92
+    EDITTEXT        IDC_HangSecs,259,128,23,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Seconds",IDC_STATIC,288,131,37,9
+    PUSHBUTTON      "&Hang this UI",IDC_Hang,259,148,59,41
+    CONTROL         "Crash This App On Exit (Press Esc to exit)",IDC_CrashOnEndSession,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,515,180,101,21
+    COMBOBOX        IDC_CpuBoundFileTouch,141,177,89,48,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_DebugText,493,23,123,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "OutputDebugString",IDC_OutputDebugString,493,44,123,14
+    GROUPBOX        "Exception",IDC_STATIC,336,113,146,92
+    PUSHBUTTON      "Throw exception",IDC_ThrowException,345,145,125,15
+    CONTROL         "Catch exception",IDC_CatchException,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,347,166,76,13
+    COMBOBOX        IDC_ExceptionType,346,127,126,141,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,7,0
+ PRODUCTVERSION 1,0,7,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "Aaron Margosis' SysNocturnals Tools"
+            VALUE "FileDescription", "VirtMemTest - Virtual Memory, CPU Hog, Etc. Test App"
+            VALUE "FileVersion", "1.0.7.0"
+            VALUE "InternalName", "VirtMemTest.exe"
+            VALUE "LegalCopyright", "Copyright (C) 2007-2024 Aaron Margosis"
+            VALUE "OriginalFilename", "VirtMemTest.exe"
+            VALUE "ProductName", "SysNocturnals VirtMemTest"
+            VALUE "ProductVersion", "1.0.7.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_VIRTMEMTEST_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 616
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 204
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_VIRTMEMTEST_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\VirtMemTest.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
